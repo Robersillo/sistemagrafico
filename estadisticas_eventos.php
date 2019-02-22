@@ -1,5 +1,13 @@
 
+<?php
 
+    session_start();
+
+    if($_SESSION['usuario']!= "rober")
+		{
+          header('location: index.php');
+          }
+?>
 <!DOCTYPE html><html lang="en" class="no-js">
 
 <!-- BEGIN HEAD -->
@@ -128,7 +136,7 @@ from res_asistentes a
 left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2 and e.tipo<>'Diplomado'
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and MONTH(e.fecha_1)=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2 and e.tipo<>'Diplomado'
 and e.id not in (528, 949, 2051, 2052, 3007, 3019, 3569)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
@@ -150,7 +158,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
 SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
 FROM eventos e
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=1 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019, 3569) and e.tipo<>'Diplomado'
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=1 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019, 3569) and e.tipo<>'Diplomado'
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
              $row=mysqli_fetch_array($result);
@@ -174,7 +182,7 @@ from res_asistentes a
 left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=2 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2 and e.tipo<>'Diplomado'
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and MONTH(e.fecha_1)=2 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2 and e.tipo<>'Diplomado'
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
@@ -196,7 +204,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
 SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
 FROM eventos e
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=2 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019) and e.tipo<>'Diplomado'
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=2 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019) and e.tipo<>'Diplomado'
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
              $row=mysqli_fetch_array($result);
@@ -220,1124 +228,11 @@ from res_asistentes a
 left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=3 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=3 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-                <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=4 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=4 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-                <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=5 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=5 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-                <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=6 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=6 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-                <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=7 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=7 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-                <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=8 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=8 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-                <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=9 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=9 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-                <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=10 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=10 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-                <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=11 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=11 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-                <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=12 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=12 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>]
-
-                },
-                    {
-                        name: 'Año 2016',
-                        data: [ <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-                      $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=1 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-            <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=2 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=2 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-            <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=3 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=3 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-            <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=4 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=4 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-        <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=5 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=5 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-        <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=6 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=6 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-        <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=7 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=7 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-        <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=8 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=8 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-        <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=9 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=9 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-        <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=10 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=10 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-        <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=11 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=11 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-        <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=12 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=12 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>]
-
-                    },
-
-                    {
-                        name: 'Año 2015',
-                        data: [ <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and MONTH(e.fecha_1)=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=1 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-                        <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and MONTH(e.fecha_1)=2 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?> / <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=2 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-             $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>,
-                        <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
 where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and MONTH(e.fecha_1)=3 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
-            $row=mysqli_fetch_array($result);
+           $row=mysqli_fetch_array($result);
                if (!empty($row["Cantidad"])){
 
 
@@ -1370,7 +265,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
                }
 
             ?>,
-                        <?php
+                <?php
                     include('conex2.php');
 
             $result = mysqli_query($link,"
@@ -1416,7 +311,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
                }
 
             ?>,
-                        <?php
+                <?php
                     include('conex2.php');
 
             $result = mysqli_query($link,"
@@ -1462,7 +357,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
                }
 
             ?>,
-                        <?php
+                <?php
                     include('conex2.php');
 
             $result = mysqli_query($link,"
@@ -1508,7 +403,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
                }
 
             ?>,
-                        <?php
+                <?php
                     include('conex2.php');
 
             $result = mysqli_query($link,"
@@ -1554,7 +449,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
                }
 
             ?>,
-                        <?php
+                <?php
                     include('conex2.php');
 
             $result = mysqli_query($link,"
@@ -1600,7 +495,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
                }
 
             ?>,
-                        <?php
+                <?php
                     include('conex2.php');
 
             $result = mysqli_query($link,"
@@ -1646,7 +541,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
                }
 
             ?>,
-                        <?php
+                <?php
                     include('conex2.php');
 
             $result = mysqli_query($link,"
@@ -1692,7 +587,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
                }
 
             ?>,
-                        <?php
+                <?php
                     include('conex2.php');
 
             $result = mysqli_query($link,"
@@ -1738,7 +633,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
                }
 
             ?>,
-                        <?php
+                <?php
                     include('conex2.php');
 
             $result = mysqli_query($link,"
@@ -1748,6 +643,102 @@ left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
 left JOIN lugares l on l.id = e.lugar_id
 where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and MONTH(e.fecha_1)=12 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=12 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>]
+
+                },
+                    {
+                        name: 'Año 2016',
+                        data: [ <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+                      $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=1 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+            <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=2 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
@@ -1769,7 +760,1024 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
 SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
 FROM eventos e
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=12 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=2 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+            <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=3 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=3 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+            <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=4 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=4 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=5 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=5 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=6 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=6 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=7 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=7 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=8 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=8 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=9 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=9 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=10 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=10 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=11 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=11 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=12 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=12 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>]
+
+                    },
+
+                    {
+                        name: 'Año 2015',
+                        data: [ <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and e.visible=1 and MONTH(e.fecha_1)=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and MONTH(e.fecha_1)=1 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+                        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and e.visible=1 and MONTH(e.fecha_1)=2 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and MONTH(e.fecha_1)=2 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+                        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and e.visible=1 and MONTH(e.fecha_1)=3 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and MONTH(e.fecha_1)=3 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+                        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and e.visible=1 and MONTH(e.fecha_1)=4 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and MONTH(e.fecha_1)=4 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+                        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and e.visible=1 and MONTH(e.fecha_1)=5 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and MONTH(e.fecha_1)=5 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+                        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and e.visible=1 and MONTH(e.fecha_1)=6 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and MONTH(e.fecha_1)=6 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+                        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and e.visible=1 and MONTH(e.fecha_1)=7 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and MONTH(e.fecha_1)=7 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+                        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and e.visible=1 and MONTH(e.fecha_1)=8 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and MONTH(e.fecha_1)=8 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+                        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and e.visible=1 and MONTH(e.fecha_1)=9 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and MONTH(e.fecha_1)=9 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+                        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and e.visible=1 and MONTH(e.fecha_1)=10 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and MONTH(e.fecha_1)=10 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+                        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and e.visible=1 and MONTH(e.fecha_1)=11 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and MONTH(e.fecha_1)=11 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+             $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>,
+                        <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and e.visible=1 and MONTH(e.fecha_1)=12 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?> / <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-4 and MONTH(e.fecha_1)=12 and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
              $row=mysqli_fetch_array($result);
@@ -1851,449 +1859,6 @@ from res_asistentes a
 left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?> , <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=2 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=3 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=4 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=5 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=6 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=7 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=8 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=9 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=10 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=11 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and MONTH(e.fecha_1)=12 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>]
-
-                },
-                    {
-                        name: 'Año 2016',
-                        data: [ <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=2 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=3 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=4 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=5 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=6 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=7 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=8 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=9 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=10 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=11 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and MONTH(e.fecha_1)=12 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
-and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>]
-
-                    },
-
-                    {
-                        name: 'Año 2015',
-                        data: [ <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
-from res_asistentes a
-left join res_reservaciones r on r.id = a.id_reservaciones
-left join eventos e on e.id = r.id_eventos
-left JOIN lugares l on l.id = e.lugar_id
 where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and MONTH(e.fecha_1)=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
@@ -2303,7 +1868,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
                 echo $row["Cantidad"];
             }
             mysqli_free_result($result);
-            ?>, <?php
+            ?> , <?php
                     include('conex2.php');
 
             $result = mysqli_query($link,"
@@ -2503,6 +2068,449 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
             mysqli_free_result($result);
             ?>]
 
+                },
+                    {
+                        name: 'Año 2016',
+                        data: [ <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=2 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=3 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=4 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=5 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=6 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=7 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=8 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=9 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=10 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=11 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=12 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>]
+
+                    },
+
+                    {
+                        name: 'Año 2015',
+                        data: [ <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=2 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=3 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=4 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=5 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=6 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=7 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=8 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=9 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=10 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=11 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+select year(e.fecha_1) as Ano, MONTH(e.fecha_1) as Mes,count(a.id) as Cantidad
+from res_asistentes a
+left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and MONTH(e.fecha_1)=12 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2
+and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>]
+
                     }
 
                 ]
@@ -2574,377 +2582,6 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
 SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
 FROM eventos e
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=1 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?> , <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=2 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=3 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=4 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=5 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=6 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=7 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=8 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=9 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=10 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=11 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=12 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>]
-
-                },
-                    {
-                        name: 'Año 2016',
-                        data: [ <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=1 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=2 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=3 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=4 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=5 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=6 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=7 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=8 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=9 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=10 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=11 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=12 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            while ($row=mysqli_fetch_array($result))
-            {
-                echo $row["Cantidad"];
-            }
-            mysqli_free_result($result);
-            ?>]
-
-                    },
-
-                    {
-                        name: 'Año 2015',
-                        data: [ <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
 where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=1 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
@@ -2953,7 +2590,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
                 echo $row["Cantidad"];
             }
             mysqli_free_result($result);
-            ?>, <?php
+            ?> , <?php
                     include('conex2.php');
 
             $result = mysqli_query($link,"
@@ -3120,6 +2757,377 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
             mysqli_free_result($result);
             ?>]
 
+                },
+                    {
+                        name: 'Año 2016',
+                        data: [ <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=1 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=2 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=3 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=4 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=5 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=6 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=7 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=8 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=9 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=10 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=11 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=12 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>]
+
+                    },
+
+                    {
+                        name: 'Año 2015',
+                        data: [ <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=1 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=2 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=3 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=4 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=5 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=6 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=7 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=8 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=9 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=10 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=11 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=12 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            while ($row=mysqli_fetch_array($result))
+            {
+                echo $row["Cantidad"];
+            }
+            mysqli_free_result($result);
+            ?>]
+
                     }
                 ]
             });
@@ -3190,7 +3198,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
 SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
 FROM eventos e
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=1 and e.visible = '0' and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=1 and e.visible = '0' and e.modalidad='presencial'  and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
              $row=mysqli_fetch_array($result);
@@ -3211,503 +3219,10 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
 SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
 FROM eventos e
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=2 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=3 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=4 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=5 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=6 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=7 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=8 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=9 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=10 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=11 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and MONTH(e.fecha_1)=12 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>]
-
-                },
-                    {
-                        name: 'Año 2016',
-                        data: [ <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=1 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=2 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=3 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=4 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=5 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=6 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=7 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-
-                           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=8 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=9 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=10 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=11 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and MONTH(e.fecha_1)=12 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-           $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>]
-
-                    },
-
-                    {
-                        name: 'Año 2015',
-                        data: [ <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=1 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
-group by year(e.fecha_1), MONTH(e.fecha_1)");
-
-            $row=mysqli_fetch_array($result);
-               if (!empty($row["Cantidad"])){
-
-
-               echo $row["Cantidad"];
-               }
-               else{
-               $row["Cantidad"]=0;
-               echo $row["Cantidad"];
-               }
-            ?>, <?php
-                    include('conex2.php');
-
-            $result = mysqli_query($link,"
-SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
-FROM eventos e
-left JOIN lugares l on l.id = e.lugar_id
 where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=2 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
-            $row=mysqli_fetch_array($result);
+           $row=mysqli_fetch_array($result);
                if (!empty($row["Cantidad"])){
 
 
@@ -3727,7 +3242,7 @@ left JOIN lugares l on l.id = e.lugar_id
 where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=3 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
-            $row=mysqli_fetch_array($result);
+           $row=mysqli_fetch_array($result);
                if (!empty($row["Cantidad"])){
 
 
@@ -3747,7 +3262,7 @@ left JOIN lugares l on l.id = e.lugar_id
 where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=4 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
-            $row=mysqli_fetch_array($result);
+           $row=mysqli_fetch_array($result);
                if (!empty($row["Cantidad"])){
 
 
@@ -3767,7 +3282,7 @@ left JOIN lugares l on l.id = e.lugar_id
 where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=5 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
-           $row=mysqli_fetch_array($result);
+            $row=mysqli_fetch_array($result);
                if (!empty($row["Cantidad"])){
 
 
@@ -3807,7 +3322,7 @@ left JOIN lugares l on l.id = e.lugar_id
 where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=7 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
-           $row=mysqli_fetch_array($result);
+            $row=mysqli_fetch_array($result);
                if (!empty($row["Cantidad"])){
 
 
@@ -3827,7 +3342,7 @@ left JOIN lugares l on l.id = e.lugar_id
 where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=8 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
-            $row=mysqli_fetch_array($result);
+           $row=mysqli_fetch_array($result);
                if (!empty($row["Cantidad"])){
 
 
@@ -3867,7 +3382,7 @@ left JOIN lugares l on l.id = e.lugar_id
 where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=10 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
-            $row=mysqli_fetch_array($result);
+           $row=mysqli_fetch_array($result);
                if (!empty($row["Cantidad"])){
 
 
@@ -3887,7 +3402,7 @@ left JOIN lugares l on l.id = e.lugar_id
 where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=11 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
-           $row=mysqli_fetch_array($result);
+            $row=mysqli_fetch_array($result);
                if (!empty($row["Cantidad"])){
 
 
@@ -3905,6 +3420,499 @@ SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
 FROM eventos e
 left JOIN lugares l on l.id = e.lugar_id
 where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and MONTH(e.fecha_1)=12 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>]
+
+                },
+                    {
+                        name: 'Año 2016',
+                        data: [ <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=1 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=2 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=3 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=4 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=5 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=6 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=7 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+
+                           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=8 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=9 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=10 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=11 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=12 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>]
+
+                    },
+
+                    {
+                        name: 'Año 2015',
+                        data: [ <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=1 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=2 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=3 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=4 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=5 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=6 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=7 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=8 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=9 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=10 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+            $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=11 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
+group by year(e.fecha_1), MONTH(e.fecha_1)");
+
+           $row=mysqli_fetch_array($result);
+               if (!empty($row["Cantidad"])){
+
+
+               echo $row["Cantidad"];
+               }
+               else{
+               $row["Cantidad"]=0;
+               echo $row["Cantidad"];
+               }
+            ?>, <?php
+                    include('conex2.php');
+
+            $result = mysqli_query($link,"
+SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
+FROM eventos e
+left JOIN lugares l on l.id = e.lugar_id
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and MONTH(e.fecha_1)=12 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)");
 
            $row=mysqli_fetch_array($result);
@@ -4123,7 +4131,7 @@ $result = mysqli_query($link,"
 select count(a.id) as Cantidad, CURRENT_TIMESTAMP as Fecha
 from res_asistentes a left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and e.pais='ve' and e.modalidad='presencial' and r.del_id is null and a.asistencia=1 and r.status>=2
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and e.pais='ve' and e.modalidad='presencial' and r.del_id is null and a.asistencia=1 and r.status>=2
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 
 while ($row=mysqli_fetch_array($result))
@@ -4141,7 +4149,7 @@ mysqli_free_result($result);
 select count(a.id) as Cantidad, CURRENT_TIMESTAMP as Fecha
 from res_asistentes a left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and e.pais='ve' and e.modalidad='online' and r.del_id is null and a.asistencia=1 and r.status>=2
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and e.pais='ve' and e.modalidad='online' and r.del_id is null and a.asistencia=1 and r.status>=2
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 
                                 while ($row=mysqli_fetch_array($result))
@@ -4161,7 +4169,7 @@ and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 select count(a.id) as Cantidad, CURRENT_TIMESTAMP as Fecha
 from res_asistentes a left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and e.pais='ve' and r.del_id is null and a.asistencia=1 and r.status>=2
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and e.pais='ve' and r.del_id is null and a.asistencia=1 and r.status>=2
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 
                             while ($row=mysqli_fetch_array($result))
@@ -4177,7 +4185,7 @@ and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 								 Asistentes
 
                                 <?php
-                                $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP) as fecha");
+                                $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-2 as fecha");
                                 while($row=mysqli_fetch_array($result))
                                 {
                                     echo $row['fecha'];
@@ -4205,7 +4213,7 @@ and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 select count(a.id) as Cantidad, CURRENT_TIMESTAMP as Fecha
 from res_asistentes a left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and e.pais='ve' and e.modalidad='presencial' and r.del_id is null and a.asistencia=1 and r.status>=2
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and e.pais='ve' and e.modalidad='presencial' and r.del_id is null and a.asistencia=1 and r.status>=2
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 
                                 while ($row=mysqli_fetch_array($result))
@@ -4223,7 +4231,7 @@ and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 select count(a.id) as Cantidad, CURRENT_TIMESTAMP as Fecha
 from res_asistentes a left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and e.pais='ve' and e.modalidad='online' and r.del_id is null and a.asistencia=1 and r.status>=2
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and e.pais='ve' and e.modalidad='online' and r.del_id is null and a.asistencia=1 and r.status>=2
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 
                                 while ($row=mysqli_fetch_array($result))
@@ -4243,7 +4251,7 @@ and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 select count(a.id) as Cantidad, CURRENT_TIMESTAMP as Fecha
 from res_asistentes a left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and e.pais='ve' and r.del_id is null and a.asistencia=1 and r.status>=2
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and e.pais='ve' and r.del_id is null and a.asistencia=1 and r.status>=2
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 
                                 while ($row=mysqli_fetch_array($result))
@@ -4257,7 +4265,7 @@ and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 								 Asistentes
 
                                 <?php
-                                $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-1 as fecha");
+                                $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-3 as fecha");
                                 while($row=mysqli_fetch_array($result))
                                 {
                                     echo $row['fecha'];
@@ -4286,7 +4294,7 @@ and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 select count(a.id) as Cantidad, CURRENT_TIMESTAMP as Fecha
 from res_asistentes a left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and e.pais='ve' and e.modalidad='presencial' and r.del_id is null and a.asistencia=1
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and e.pais='ve' and e.modalidad='presencial' and r.del_id is null and a.asistencia=1
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 
                                 while ($row=mysqli_fetch_array($result))
@@ -4304,7 +4312,7 @@ and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 select count(a.id) as Cantidad, CURRENT_TIMESTAMP as Fecha
 from res_asistentes a left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and e.pais='ve' and e.modalidad='online' and r.del_id is null and a.asistencia=1
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and e.pais='ve' and e.modalidad='online' and r.del_id is null and a.asistencia=1
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 
                                 while ($row=mysqli_fetch_array($result))
@@ -4324,7 +4332,7 @@ and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 select count(a.id) as Cantidad, CURRENT_TIMESTAMP as Fecha
 from res_asistentes a left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and e.pais='ve' and r.del_id is null and a.asistencia=1
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and e.pais='ve' and r.del_id is null and a.asistencia=1
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 
                                 while ($row=mysqli_fetch_array($result))
@@ -4338,7 +4346,7 @@ and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
                                 Asistentes
 
                                 <?php
-                                $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-2 as fecha");
+                                $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-3 as fecha");
                                 while($row=mysqli_fetch_array($result))
                                 {
                                     echo $row['fecha'];
@@ -4487,7 +4495,7 @@ from res_asistentes a
 left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2 and e.tipo<>'Diplomado'
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2 and e.tipo<>'Diplomado'
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)
 ");
@@ -4498,7 +4506,7 @@ from res_asistentes a
 left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2 and e.tipo<>'Diplomado'
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2 and e.tipo<>'Diplomado'
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)
 ");
@@ -4509,7 +4517,7 @@ from res_asistentes a
 left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2 and e.tipo<>'Diplomado'
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and e.pais='ve' and e.modalidad='presencial' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2 and e.tipo<>'Diplomado'
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)
 ");
@@ -4543,25 +4551,25 @@ group by year(e.fecha_1), MONTH(e.fecha_1)
                                         </th>
                                         <th>
                                             Cantidad  <?php
+                                            $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-3 as fecha");
+                                            while($row=mysqli_fetch_array($result))
+                                            {
+                                                echo $row['fecha'];
+                                            }
+                                            ?>
+                                        </th>
+                                        <th>
+                                            Cantidad  <?php
+                                            $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-3 as fecha");
+                                            while($row=mysqli_fetch_array($result))
+                                            {
+                                                echo $row['fecha'];
+                                            }
+                                            ?>
+                                        </th>
+                                        <th>
+                                            Cantidad  <?php
                                             $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-2 as fecha");
-                                            while($row=mysqli_fetch_array($result))
-                                            {
-                                                echo $row['fecha'];
-                                            }
-                                            ?>
-                                        </th>
-                                        <th>
-                                            Cantidad  <?php
-                                            $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-1 as fecha");
-                                            while($row=mysqli_fetch_array($result))
-                                            {
-                                                echo $row['fecha'];
-                                            }
-                                            ?>
-                                        </th>
-                                        <th>
-                                            Cantidad  <?php
-                                            $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP) as fecha");
                                             while($row=mysqli_fetch_array($result))
                                             {
                                                 echo $row['fecha'];
@@ -4620,7 +4628,7 @@ from res_asistentes a
 left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and e.pais='ve' and e.modalidad='online' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2 and e.tipo<>'Diplomado'
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and e.pais='ve' and e.modalidad='online' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2 and e.tipo<>'Diplomado'
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)
 ");
@@ -4631,7 +4639,7 @@ from res_asistentes a
 left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible=1 and e.pais='ve' and e.modalidad='online' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2 and e.tipo<>'Diplomado'
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible=1 and e.pais='ve' and e.modalidad='online' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2 and e.tipo<>'Diplomado'
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)
 ");
@@ -4642,7 +4650,7 @@ from res_asistentes a
 left join res_reservaciones r on r.id = a.id_reservaciones
 left join eventos e on e.id = r.id_eventos
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and e.pais='ve' and e.modalidad='online' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2 and e.tipo<>'Diplomado'
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible=1 and e.pais='ve' and e.modalidad='online' and l.zona='valencia' and r.del_id is null and a.asistencia=1 and r.status>=2 and e.tipo<>'Diplomado'
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)
 group by year(e.fecha_1), MONTH(e.fecha_1)
 ");
@@ -4676,25 +4684,25 @@ group by year(e.fecha_1), MONTH(e.fecha_1)
                                     </th>
                                     <th>
                                         Cantidad <?php
+                                        $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-3 as fecha");
+                                        while($row=mysqli_fetch_array($result))
+                                        {
+                                            echo $row['fecha'];
+                                        }
+                                        ?>
+                                    </th>
+                                    <th>
+                                        Cantidad <?php
+                                        $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-3 as fecha");
+                                        while($row=mysqli_fetch_array($result))
+                                        {
+                                            echo $row['fecha'];
+                                        }
+                                        ?>
+                                    </th>
+                                    <th>
+                                        Cantidad <?php
                                         $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-2 as fecha");
-                                        while($row=mysqli_fetch_array($result))
-                                        {
-                                            echo $row['fecha'];
-                                        }
-                                        ?>
-                                    </th>
-                                    <th>
-                                        Cantidad <?php
-                                        $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-1 as fecha");
-                                        while($row=mysqli_fetch_array($result))
-                                        {
-                                            echo $row['fecha'];
-                                        }
-                                        ?>
-                                    </th>
-                                    <th>
-                                        Cantidad <?php
-                                        $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP) as fecha");
                                         while($row=mysqli_fetch_array($result))
                                         {
                                             echo $row['fecha'];
@@ -4752,7 +4760,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)
 SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
 FROM eventos e
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and l.zona='valencia' and e.id not in (528, 949, 2051, 2052, 3007, 3019) and e.tipo<>'Diplomado'
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and l.zona='valencia' and e.id not in (528, 949, 2051, 2052, 3007, 3019) and e.tipo<>'Diplomado'
 group by year(e.fecha_1), MONTH(e.fecha_1)
 ");
 
@@ -4760,7 +4768,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)
 SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
 FROM eventos e
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible = '1' and e.modalidad='presencial'  and e.pais='ve' and l.zona='valencia' and e.id not in (528, 949, 2051, 2052, 3007, 3019) and e.tipo<>'Diplomado'
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible = '1' and e.modalidad='presencial'  and e.pais='ve' and l.zona='valencia' and e.id not in (528, 949, 2051, 2052, 3007, 3019) and e.tipo<>'Diplomado'
 group by year(e.fecha_1), MONTH(e.fecha_1)
 ");
 
@@ -4768,7 +4776,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)
 SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
 FROM eventos e
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and l.zona='valencia' and e.id not in (528, 949, 2051, 2052, 3007, 3019) and e.tipo<>'Diplomado'
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible = '1' and e.modalidad='presencial' and e.pais='ve' and l.zona='valencia' and e.id not in (528, 949, 2051, 2052, 3007, 3019) and e.tipo<>'Diplomado'
 group by year(e.fecha_1), MONTH(e.fecha_1)
 ");
                                 $ano1=array();
@@ -4801,25 +4809,25 @@ group by year(e.fecha_1), MONTH(e.fecha_1)
                                         </th>
                                         <th>
                                             Cantidad <?php
+                                            $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-3 as fecha");
+                                            while($row=mysqli_fetch_array($result))
+                                            {
+                                                echo $row['fecha'];
+                                            }
+                                            ?>
+                                        </th>
+                                        <th>
+                                            Cantidad <?php
+                                            $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-3 as fecha");
+                                            while($row=mysqli_fetch_array($result))
+                                            {
+                                                echo $row['fecha'];
+                                            }
+                                            ?>
+                                        </th>
+                                        <th>
+                                            Cantidad <?php
                                             $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-2 as fecha");
-                                            while($row=mysqli_fetch_array($result))
-                                            {
-                                                echo $row['fecha'];
-                                            }
-                                            ?>
-                                        </th>
-                                        <th>
-                                            Cantidad <?php
-                                            $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-1 as fecha");
-                                            while($row=mysqli_fetch_array($result))
-                                            {
-                                                echo $row['fecha'];
-                                            }
-                                            ?>
-                                        </th>
-                                        <th>
-                                            Cantidad <?php
-                                            $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP) as fecha");
                                             while($row=mysqli_fetch_array($result))
                                             {
                                                 echo $row['fecha'];
@@ -4872,7 +4880,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)
 SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
 FROM eventos e
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and l.zona='valencia' and e.id not in (528, 949, 2051, 2052, 3007, 3019) and e.tipo<>'Diplomado'
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and l.zona='valencia' and e.id not in (528, 949, 2051, 2052, 3007, 3019) and e.tipo<>'Diplomado'
 group by year(e.fecha_1), MONTH(e.fecha_1)
 ");
 
@@ -4880,7 +4888,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)
 SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
 FROM eventos e
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-1 and e.visible = '0' and e.modalidad='presencial'  and e.pais='ve' and l.zona='valencia' and e.id not in (528, 949, 2051, 2052, 3007, 3019) and e.tipo<>'Diplomado'
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-3 and e.visible = '0' and e.modalidad='presencial'  and e.pais='ve' and l.zona='valencia' and e.id not in (528, 949, 2051, 2052, 3007, 3019) and e.tipo<>'Diplomado'
 group by year(e.fecha_1), MONTH(e.fecha_1)
 ");
 
@@ -4888,7 +4896,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)
 SELECT year(e.fecha_1) as ano,MONTH(e.fecha_1) as Mes, count(e.id) as Cantidad
 FROM eventos e
 left JOIN lugares l on l.id = e.lugar_id
-where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and l.zona='valencia' and e.id not in (528, 949, 2051, 2052, 3007, 3019) and e.tipo<>'Diplomado'
+where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP)-2 and e.visible = '0' and e.modalidad='presencial' and e.pais='ve' and l.zona='valencia' and e.id not in (528, 949, 2051, 2052, 3007, 3019) and e.tipo<>'Diplomado'
 group by year(e.fecha_1), MONTH(e.fecha_1)
 ");
                                 $ano1=array();
@@ -4921,25 +4929,25 @@ group by year(e.fecha_1), MONTH(e.fecha_1)
                                         </th>
                                         <th>
                                             Cantidad <?php
+                                            $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-3 as fecha");
+                                            while($row=mysqli_fetch_array($result))
+                                            {
+                                                echo $row['fecha'];
+                                            }
+                                            ?>
+                                        </th>
+                                        <th>
+                                            Cantidad <?php
+                                            $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-3 as fecha");
+                                            while($row=mysqli_fetch_array($result))
+                                            {
+                                                echo $row['fecha'];
+                                            }
+                                            ?>
+                                        </th>
+                                        <th>
+                                            Cantidad <?php
                                             $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-2 as fecha");
-                                            while($row=mysqli_fetch_array($result))
-                                            {
-                                                echo $row['fecha'];
-                                            }
-                                            ?>
-                                        </th>
-                                        <th>
-                                            Cantidad <?php
-                                            $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP)-1 as fecha");
-                                            while($row=mysqli_fetch_array($result))
-                                            {
-                                                echo $row['fecha'];
-                                            }
-                                            ?>
-                                        </th>
-                                        <th>
-                                            Cantidad <?php
-                                            $result = mysqli_query($link,"SELECT YEAR(CURRENT_TIMESTAMP) as fecha");
                                             while($row=mysqli_fetch_array($result))
                                             {
                                                 echo $row['fecha'];
