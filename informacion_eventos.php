@@ -255,14 +255,14 @@
 							</div>
 						</div>
 						<div class="portlet-body">
-						
-							<?php
-			  
+
+<?php
+
 include('conex2.php');
 
 $result = mysqli_query($link,"
 select *
-From 
+From
 (select e.nombre as 'Evento', e.tipo as tipo_evento, e.id as id_evento, year (e.fecha_1) as 'Ano', MONTH (e.fecha_1) as Mes, DAY (e.fecha_1) as Dia, e.fecha_1 as fecha_completa, e.pais as 'Pais', count(a.id) as 'asistentes', p.nombre as 'Facilitador', l.zona, e.modalidad, e.visible as 'visible'
 from eventos e
 left join res_reservaciones r on r.id_eventos = e.id
@@ -296,7 +296,7 @@ group by e.id
 
 ) a
 
-join 
+join
 
 (select e.nombre as 'Evento', count(r.id) as 'reservaciones', e.id as id_evento
 from eventos e
@@ -343,7 +343,7 @@ on a.id_evento = b.id_evento
 							</tr>
 							</thead>
 							<tbody>
-							
+
 							<?php
 while ($row=mysqli_fetch_array($result))
 {
@@ -418,16 +418,16 @@ mysqli_free_result($result);
 
 
 ?>
-							
+
 							</tbody>
 							</table>
 						</div>
 					</div>
 				</div>
 					<!-- END EXAMPLE TABLE PORTLET-->
-					
-					
-					
+
+
+
 			</div>
 			</div>
 			<!-- END PAGE CONTENT-->
@@ -454,7 +454,7 @@ mysqli_free_result($result);
 <!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
 <script src="assets/plugins/respond.min.js"></script>
-<script src="assets/plugins/excanvas.min.js"></script> 
+<script src="assets/plugins/excanvas.min.js"></script>
 <![endif]-->
 <script src="assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
@@ -474,7 +474,7 @@ mysqli_free_result($result);
 <script src="assets/scripts/core/app.js"></script>
 <script src="assets/scripts/custom/table-advanced.js"></script>
 <script>
-jQuery(document).ready(function() {       
+jQuery(document).ready(function() {
    App.init();
    TableAdvanced.init();
 });

@@ -1,12 +1,4 @@
-<?php
 
-    session_start();
-	
-    if($_SESSION['usuario']!= "rober")
-		{
-          header('location: index.php');
-        }
-?>
 
 <!DOCTYPE html><html lang="en" class="no-js">
 
@@ -4080,7 +4072,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
         </div>
     </div>
     <!-- END SIDEBAR -->
-	
+
 	<!-- BEGIN CONTENT -->
 	<div class="page-content-wrapper">
 	<div class="page-content">
@@ -4125,12 +4117,12 @@ group by year(e.fecha_1), MONTH(e.fecha_1)");
 						<div class="details">
 							<div class="number">
 <?php
-include('conex2.php'); 
+include('conex2.php');
 
 $result = mysqli_query($link,"
 select count(a.id) as Cantidad, CURRENT_TIMESTAMP as Fecha
-from res_asistentes a left join res_reservaciones r on r.id = a.id_reservaciones 
-left join eventos e on e.id = r.id_eventos 
+from res_asistentes a left join res_reservaciones r on r.id = a.id_reservaciones
+left join eventos e on e.id = r.id_eventos
 where year(e.fecha_1)=YEAR(CURRENT_TIMESTAMP) and e.visible=1 and e.pais='ve' and e.modalidad='presencial' and r.del_id is null and a.asistencia=1 and r.status>=2
 and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 
@@ -4363,7 +4355,7 @@ and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 
 				</div>
 			<!-- END DASHBOARD STATS -->
-			
+
 	<!-- Comienzo Graficas-->
 
         <div class="row">
@@ -4469,7 +4461,7 @@ and e.id not in (528, 949, 2051, 2052, 3007, 3019)");
 		<!-- END tercero Grafico-->
 	</div>
 	<!-- END Graficas-->
-	
+
 	<!-- Comienzo Informacion Extra-->
 	<div class="row">
 			<div class="col-md-6 col-sm-6">
