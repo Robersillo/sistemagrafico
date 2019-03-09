@@ -42,7 +42,7 @@ include 'header.php';
 		<div class="page-content">
 
 <?php
-include 'informacion_eventosvista.php';
+include 'estadisticas_eventosvista.php';
  ?>
 	<!-- Poner aqui el Contenido -->
 

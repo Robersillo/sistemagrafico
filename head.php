@@ -45,10 +45,15 @@ margin-left: -61px;
 <link href="assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
 <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
 <link href="assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
-<link href="assets/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
 <link href="assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" href="assets/plugins/data-tables/DT_bootstrap.css"/>
 <!-- END PAGE LEVEL PLUGIN STYLES -->
+
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link rel="stylesheet" type="text/css" href="assets/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="assets/plugins/select2/select2-metronic.css"/>
+<link rel="stylesheet" href="assets/plugins/data-tables/DT_bootstrap.css"/>
+<!-- END PAGE LEVEL STYLES -->
+
 <!-- BEGIN THEME STYLES -->
 <link href="assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
 <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
@@ -60,8 +65,6 @@ margin-left: -61px;
 <link href="assets/css/custom.css" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon/favicon.ico"/>
-
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
 </head>
