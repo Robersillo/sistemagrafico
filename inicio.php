@@ -1,9 +1,9 @@
 <?php
 
     session_start();
-	
+
     if($_SESSION['usuario']!= "rober")
-		{      
+		{
           header('location: index.php');
           }
 ?>
@@ -79,66 +79,7 @@
 						</span>
 					</a>
 				</li>
-
-                <!--
-						<li>
-							<a href="#">
-								<i class="fa fa-money"></i>
-								<span class="title">
-							    Ventas y Compras
-						        </span>
-                                <span class="arrow">
-								</span>
-							</a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-user"></span>
-                                        Clientes
-                                        <span class="arrow">
-								</span>
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li>
-                                            <a href="juridicos.php">
-                                                <i class="fa fa-building-o"></i>
-                                                Juridicos
-                                            </a>
-                                            <a href="naturales.php">
-                                                <i class="fa fa-user"></i>
-                                                Naturales
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="glyphicon glyphicon-list-alt"></span>
-                                        Proveedores
-                                        <span class="arrow">
-								</span>
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li>
-                                            <a href="proveedores.php">
-                                                <i class="fa fa-list-ol"></i>
-                                                Lista
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="anadir_proveedores.php">
-                                                <i class="fa fa-plus"></i>
-                                                Añadir
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-						</li>
-
-                -->
-
-					                 <li>
+        					                 <li>
                     <a>
                         <i class="fa fa-calendar-o"></i>
 								<span class="title">
@@ -206,6 +147,13 @@
 				</div>
 			</div>
 			<!-- END PAGE HEADER-->
+
+
+      <?php
+      include 'bordtop.php';
+      ?>
+
+
 			<!-- BEGIN PAGE CONTENT-->
 			<div class="row">
 				<center>
@@ -234,7 +182,7 @@
 <!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
 <script src="assets/plugins/respond.min.js"></script>
-<script src="assets/plugins/excanvas.min.js"></script> 
+<script src="assets/plugins/excanvas.min.js"></script>
 <![endif]-->
 <script src="assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
 <script src="assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
@@ -249,7 +197,7 @@
 <!-- END CORE PLUGINS -->
 <script src="assets/scripts/core/app.js"></script>
 <script>
-jQuery(document).ready(function() {    
+jQuery(document).ready(function() {
    App.init();
 });
 </script>
