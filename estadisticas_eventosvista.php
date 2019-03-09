@@ -164,15 +164,16 @@ include 'dataeventosrealizados.php';
         <div class="portlet blue box">
                     <div class="portlet-title">
                       <div class="caption">
-                        <i class="glyphicon glyphicon-list-alt""></i>Asistentes Presenciales VALENCIA
-                      </div>
-                      <div class="tools">
+                        <i class="glyphicon glyphicon-list-alt""> </i> Asistentes Presenciales VALENCIA
+                    </div>
+                    <div class="tools">
                         <a href="javascript:" class="expand">
                         </a>
-                      </div>
                     </div>
-                          <div class="portlet-body" style="display: none;">
-                              <div class="portlet blue box">
+                </div>
+                <div class="portlet-body" style="display: none;">
+                    <div class="portlet blue box">
+
                           <?php
                           include('conex2.php');
                           $result1 = mysqli_query($link,"
@@ -229,7 +230,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)
                           }
                           ?>
 
-                          <table class="table table-striped table-bordered table-hover" id="sample_2">
+                          <table class="table table-striped table-bordered table-hover" id="sample_4">
                               <thead>
                               <tr>
                                   <th>
