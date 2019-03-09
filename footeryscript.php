@@ -24,13 +24,6 @@
 <script src="assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="assets/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
-<script src="assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
-<script src="assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-<script src="assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js" type="text/javascript"></script>
-<script src="assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js" type="text/javascript"></script>
-<script src="assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js" type="text/javascript"></script>
-<script src="assets/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js" type="text/javascript"></script>
 <script src="assets/plugins/flot/jquery.flot.min.js" type="text/javascript"></script>
 <script src="assets/plugins/flot/jquery.flot.resize.min.js" type="text/javascript"></script>
 <script src="assets/plugins/flot/jquery.flot.categories.min.js" type="text/javascript"></script>
@@ -44,12 +37,19 @@
 <script src="assets/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 
+<!-- BEGIN DATA TABLE -->
+<script type="text/javascript" src="assets/plugins/select2/select2.min.js"></script>
+<script type="text/javascript" src="assets/plugins/data-tables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="assets/plugins/data-tables/DT_bootstrap.js"></script>
+<!-- END DATA TABLE -->
+
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="assets/scripts/core/app.js" type="text/javascript"></script>
 <script src="assets/scripts/custom/index.js" type="text/javascript"></script>
 <script src="assets/scripts/custom/tasks.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 
+<script src="assets/scripts/custom/table-advanced.js"></script>
 <script>
     jQuery(document).ready(function() {
         App.init();
