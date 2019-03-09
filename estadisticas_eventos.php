@@ -205,6 +205,10 @@ margin-left: -61px;
         <div class="row">
             <!-- Grafico 0-->
 
+            <?php
+            include 'datapromedio.php';
+            ?>
+
             <div class="portlet solid bordered light-grey">
                 <div class="portlet box purple">
                     <div class="portlet-title">
@@ -231,6 +235,10 @@ margin-left: -61px;
         <div class="row">
             <!-- Primer Grafico-->
 
+            <?php
+            include 'dataeventos.php';
+            ?>
+
                 <div class="portlet solid bordered light-grey">
                     <div class="portlet box blue">
                         <div class="portlet-title">
@@ -256,6 +264,12 @@ margin-left: -61px;
 
 	<div class="row">
 		<!-- segundo Grafico-->
+
+
+    <?php
+    include 'dataeventosrealizados.php';
+    ?>
+
 		<div class="col-md-6 col-sm-6">
 			<div class="portlet solid bordered light-grey">
 					<div class="portlet box green">
@@ -280,6 +294,13 @@ margin-left: -61px;
 		<!-- END segundo Grafico-->
 
         <!-- tercero Grafico-->
+
+
+        <?php
+        include 'dataeventoscancelados.php';
+        ?>
+
+        
 		<div class="col-md-6 col-sm-6">
 
 				<div class="portlet solid bordered light-grey">
@@ -879,22 +900,6 @@ group by year(e.fecha_1), MONTH(e.fecha_1)
 <!-- BEGIN DATA GRAFICO SCRIPTS -->
 <script src="SCRIP-GRAF.js" type="text/javascript"></script>
 <!-- END DATA GRAFICO SCRIPTS -->
-
-<?php
-include 'datapromedio.php';
-?>
-
-<?php
-include 'dataeventos.php';
-?>
-
-<?php
-include 'dataeventosrealizados.php';
-?>
-
-<?php
-include 'dataeventoscancelados.php';
-?>
 
 <script>
     jQuery(document).ready(function() {
