@@ -363,7 +363,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)
                       }
                       ?>
 
-                      <table class="table table-striped table-bordered table-hover" id="sample_2">
+                      <table class="table table-striped table-bordered table-hover" id="sample_4">
                           <thead>
                           <tr>
                               <th>
@@ -488,7 +488,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)
                           }
                           ?>
 
-                          <table class="table table-striped table-bordered table-hover" id="sample_2">
+                          <table class="table table-striped table-bordered table-hover" id="sample_4">
                               <thead>
                               <tr>
                                   <th>
@@ -608,7 +608,7 @@ group by year(e.fecha_1), MONTH(e.fecha_1)
                           }
                           ?>
 
-                          <table class="table table-striped table-bordered table-hover" id="sample_2">
+                          <table class="table table-striped table-bordered table-hover" id="sample_4">
                               <thead>
                               <tr>
                                   <th>
