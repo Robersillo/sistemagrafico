@@ -31,7 +31,6 @@ margin-left: -61px;
 
 <meta charset="ISO-8859-1" />
 <title> AE | Administrador de Estadisticas</title>
-<script src="Chart.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta content="" name="description"/>

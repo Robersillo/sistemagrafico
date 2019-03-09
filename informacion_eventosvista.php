@@ -228,3 +228,12 @@ mysqli_free_result($result);
         </tbody>
         </table>
       </div>
+    </div>
+  </div>
+    <!-- END EXAMPLE TABLE PORTLET-->
+
+
+
+</div>
+</div>
+<!-- END PAGE CONTENT-->
