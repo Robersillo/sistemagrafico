@@ -29,7 +29,7 @@ margin-left: -61px;
         ${demo.css}
     </style>
 
-<meta charset="utf-8"/>
+<meta charset="ISO-8859-1" />
 <title> AE | Administrador de Estadisticas</title>
 <script src="Chart.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,6 +48,7 @@ margin-left: -61px;
 <link href="assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css"/>
 <link href="assets/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
 <link href="assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="assets/plugins/data-tables/DT_bootstrap.css"/>
 <!-- END PAGE LEVEL PLUGIN STYLES -->
 <!-- BEGIN THEME STYLES -->
 <link href="assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>

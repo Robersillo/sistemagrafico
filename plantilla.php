@@ -41,7 +41,9 @@ include 'header.php';
   <div class="page-content-wrapper">
 		<div class="page-content">
 
-
+<?php
+include 'informacion_eventosvista.php';
+ ?>
 	<!-- Poner aqui el Contenido -->
 
 
