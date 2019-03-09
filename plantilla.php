@@ -42,13 +42,7 @@ include 'header.php';
 		<div class="page-content">
 
 
-
-
 	<!-- Poner aqui el Contenido -->
-
-
-
-
 
 
 			<!-- END PAGE CONTENT-->

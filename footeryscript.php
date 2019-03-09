@@ -50,10 +50,6 @@
 <script src="assets/scripts/custom/tasks.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 
-<!-- BEGIN DATA GRAFICO SCRIPTS -->
-<script src="SCRIP-GRAF.js" type="text/javascript"></script>
-<!-- END DATA GRAFICO SCRIPTS -->
-
 <script>
     jQuery(document).ready(function() {
         App.init();

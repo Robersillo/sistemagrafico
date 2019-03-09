@@ -300,7 +300,7 @@ margin-left: -61px;
         include 'dataeventoscancelados.php';
         ?>
 
-        
+
 		<div class="col-md-6 col-sm-6">
 
 				<div class="portlet solid bordered light-grey">
@@ -896,10 +896,6 @@ group by year(e.fecha_1), MONTH(e.fecha_1)
 <script src="assets/scripts/custom/index.js" type="text/javascript"></script>
 <script src="assets/scripts/custom/tasks.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
-
-<!-- BEGIN DATA GRAFICO SCRIPTS -->
-<script src="SCRIP-GRAF.js" type="text/javascript"></script>
-<!-- END DATA GRAFICO SCRIPTS -->
 
 <script>
     jQuery(document).ready(function() {
