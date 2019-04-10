@@ -12,7 +12,7 @@
 
 <!-- BEGIN HEAD -->
 <head>
-    <meta charset="ISO-8859-1" />
+    <meta charset="UTF-8">
 <title> AE | Administrador de Estadisticas</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
