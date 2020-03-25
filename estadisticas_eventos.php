@@ -19,7 +19,7 @@ height: 15px;
 width: 15px;
 position: relative;
 margin-left: 79px;
-margin-top: 7px;
+margin-top: 8px;
  background-color: rgb(138, 238, 238);
 }
 
